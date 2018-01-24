@@ -7,9 +7,9 @@ def load_data(bars_filepath):
         return json.load(bars_file)
 
 
-def get_sit_counts(data_bars):
-    return [data_bars["features"][i]["properties"]["Attributes"]["SeatsCount"]
-            for i in range(len(data_bars["features"]))]
+def get_sit_counts(d_bars):
+    return [d_bars["features"][bari]["properties"]["Attributes"]["SeatsCount"]
+            for bari in range(len(d_bars["features"]))]
 
 
 def get_biggest_bar(data_bars):
@@ -25,11 +25,11 @@ def get_smallest_bar(data_bars):
 
 
 def get_closest_bar(data_bars, longitude, latitude):
-    coordinates_list = [data_bars["features"][i]["geometry"]["coordinates"]
-                        for i in range(len(data_bars["features"]))]
-    distance_list = [abs(longitude - coordinates_list[i][0]) +
-                     abs(coordinates_list[i][1] - latitude)
-                     for i in range(len(coordinates_list))]
+    coordinates_list = [data_bars["features"][bari]["geometry"]["coordinates"]
+                        for bari in range(len(data_bars["features"]))]
+    distance_list = [abs(longitude - coordinates_list[bari][0]) +
+                     abs(coordinates_list[bari][1] - latitude)
+                     for bari in range(len(coordinates_list))]
     closest_index = distance_list.index(min(distance_list))
     return data_bars["features"][closest_index]
 
@@ -41,18 +41,17 @@ def get_bar_name(data_bar):
 if __name__ == '__main__':
     try:
         data_bars = load_data(sys.argv[1])
-    except IndexError:
-        print("No file name specified")
-    except IOError as err2:
-        print(err2)
-    print("The biggest bar is " +
-          get_bar_name(get_biggest_bar(data_bars)))
-    print("The smallest bar is " +
-          get_bar_name(get_smallest_bar(data_bars)))
-    try:
+        print("The biggest bar is " +
+              get_bar_name(get_biggest_bar(data_bars)))
+        print("The smallest bar is " +
+              get_bar_name(get_smallest_bar(data_bars)))
         longitude, latitude = map(float,
                                   raw_input("Coordinates: ").split(' '))
         print("The closest bar is " +
               get_bar_name(get_closest_bar(data_bars, longitude, latitude)))
+    except IndexError:
+        print("No file name specified")
+    except IOError as err2:
+        print(err2)
     except ValueError as err3:
         print(err3)
