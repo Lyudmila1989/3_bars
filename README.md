@@ -1,22 +1,25 @@
-# Ближайшие бары
+# Closest bars
 
-[FIXME. Здесь будет описание проекта]
+The script analyzes the .json file with the data about the Moscow bars ([data.mos.ru](https://data.mos.ru/)) and finds the largest, the smallest and nearest bars in relation to entered coords.
 
-# Как запустить
+# Running
 
-Скрипт требует для своей работы установленного интерпретатора Python версии 3.5
+The script requires the installed Python interpreter version 3.5.
 
-Запуск на Linux:
+Running on Linux:
 
 ```bash
 
-$ python bars.py # possibly requires call of python3 executive instead of just python
-# FIXME вывести пример ответа скрипта
+$ python bars.py bars.json # possibly requires call of python3 executive instead of just python
+The biggest bar is Спорт бар «Красная машина»
+The smallest bar is БАР. СОКИ
+Coordinates: 38 90 # input coords here
+The closest bar is Гудсон бар
 
 ```
 
-Запуск на Windows происходит аналогично.
+Running on Windows is similar.
 
-# Цели проекта
+# Project Goals
 
-Код создан в учебных целях. В рамках учебного курса по веб-разработке - [DEVMAN.org](https://devman.org)
+The code was created for training purposes in the web development training course - [DEVMAN.org](https://devman.org).
